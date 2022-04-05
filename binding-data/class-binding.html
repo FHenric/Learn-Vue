@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Vue</title>
+
+    <style>
+        .text{
+            color: red;
+        }
+
+        .is-loading {
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root">
+          <!-- v-bind possui uma versão short que é simplesmente usar o ":" pra se referir como um bind -->
+          <!-- v-bind:<atribute-title>="<name-in-the-data>" -->
+        <button v-bind:title="dog">Hover n Over</button>
+
+        <!-- metodo ":" sendo utilizado no lugar do v-bind -->
+        <h1 :class="className">Hello Comunismo</h1>
+
+        <button :class="{'is-loading' : isLoading}" v-on:click="toggleClass">Me maceta</button>
+
+    </div>
+
+
+    <script src="https://unpkg.com/vue@2.1.3/dist/vue.js"></script>
+
+    <script>
+
+        var app = new Vue({
+            el:'#root',
+            data: {
+                dog:'cu de cachorro',
+                className:'text',
+                isLoading: true
+            },
+            methods: {
+                toggleClass() {
+
+                    if(this.isLoading){
+                        this.isLoading = false
+                    } else {
+                        this.isLoading = true
+                    }
+                    
+                }
+            },
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Learn Vue</title>
+
+    <style>
+        .item-list {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root">
+
+        <h2>Todas as tarefas</h2>
+
+        <ul>
+            <div v-for="task in tasks" class="item-list">
+                <li v-text="task.description"></li>
+                <input type="checkbox" v-if="task.completed" checked >
+                <input type="checkbox" v-else="!task.completed" > 
+            </div>
+             
+        </ul>
+
+        <h2>Completas</h2>
+        <ul>
+            <li v-for="task in completeTasks"  v-text="task.description"></li>
+        </ul>
+
+        <h2>Incompletas</h2>
+        <ul>
+            <li v-for="task in incompleteTasks"  v-text="task.description"></li>
+        </ul>
+
+    </div>
+
+
+    <script src="https://unpkg.com/vue@2.1.3/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el:'#root',
+            data: {
+                tasks: [
+                    {
+                        description: 'Go to the strip-club',
+                        completed: true
+                    },
+                    {
+                        description: 'Comer amoras',
+                        completed: false
+                    },
+                    {
+                        description: 'Adicionar alcione na playlist do spotify',
+                        completed: true
+                    },
+                    {
+                        description: 'Alimentar a planta carnivore não binária',
+                        completed: false
+                    },
+                    {
+                        description: 'Amamentar o filhote de bezerra do tio Sergio',
+                        completed: true
+                    },
+                ]
+            },
+            computed: {
+                completeTasks() {
+                    return this.tasks.filter(task => task.completed);
+                },
+
+                incompleteTasks() {
+                    return this.tasks.filter(task => !task.completed);
+                }
+            },
+        })
+
+    </script>
+</body>
+</html>
